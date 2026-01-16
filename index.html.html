@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Laiba | AbdullahXtreme</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --rose-gold: #e0bfb8;
+            --gold: #d4af37;
+            --crimson: #7b1113;
+            --charcoal: #121212;
+            --glass: rgba(255, 255, 255, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--charcoal);
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #2a2a2a 0%, #121212 100%);
+            position: relative;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            color: var(--rose-gold);
+            margin-bottom: 1rem;
+            animation: fadeInDown 1.5s ease-out;
+        }
+
+        /* --- Countdown --- */
+        .countdown-container {
+            margin: 2rem 0;
+            display: flex;
+            gap: 15px;
+        }
+
+        .time-box {
+            background: var(--glass);
+            border: 1px solid var(--rose-gold);
+            padding: 15px;
+            border-radius: 12px;
+            min-width: 70px;
+            backdrop-filter: blur(10px);
+        }
+
+        .time-box span { font-size: 1.8rem; display: block; color: var(--gold); }
+        .time-box label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- Interaction Buttons (Video & Voice) --- */
+        .action-row {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-video { background: var(--crimson); color: white; }
+        .btn-voice { background: var(--gold); color: black; }
+        .btn:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
+
+        /* --- Social Floating Bar --- */
+        .social-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .float-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: 0.3s;
+        }
+
+        .insta { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .wp { background: #25d366; }
+        .float-icon:hover { transform: translateY(-5px); }
+
+        /* --- Memory Gallery --- */
+        .gallery { padding: 80px 5%; background: #0a0a0a; }
+        .gallery-title { text-align: center; font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 50px; color: var(--rose-gold); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        
+        .card {
+            background: var(--glass);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.4s;
+        }
+        .card:hover { border-color: var(--gold); }
+        .card-img { height: 350px; width: 100%; background-size: cover; background-position: center; }
+        .card-desc { padding: 20px; text-align: center; }
+
+        /* --- Surprise Section --- */
+        .surprise-section {
+            padding: 60px 20px;
+            text-align: center;
+            background: var(--charcoal);
+        }
+
+        .mystery-box {
+            display: inline-block;
+            padding: 40px;
+            border: 2px dashed var(--gold);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .mystery-box:hover { background: rgba(212, 175, 55, 0.05); }
+
+        /* --- Animations --- */
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- Responsive --- */
+        @media (max-width: 600px) {
+            .social-float { bottom: 20px; right: 20px; }
+            .float-icon { width: 45px; height: 45px; font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <h1>Happy Birthday, Laiba</h1>
+        <p>"To the one who makes every day brighter..."</p>
+        
+        <div class="countdown-container" id="countdown">
+            <div class="time-box"><span id="days">00</span><label>Days</label></div>
+            <div class="time-box"><span id="hours">00</span><label>Hours</label></div>
+            <div class="time-box"><span id="mins">00</span><label>Mins</label></div>
+            <div class="time-box"><span id="secs">00</span><label>Secs</label></div>
+        </div>
+
+        <div class="action-row">
+            <button class="btn btn-video" onclick="alert('Playing Video Tribute...')">
+                <i class="fas fa-play"></i> Watch Video
+            </button>
+            <button class="btn btn-voice" onclick="playVoice()">
+                <i class="fas fa-microphone"></i> Hear My Message
+            </button>
+        </div>
+    </section>
+
+    <section class="surprise-section">
+        <div class="mystery-box" onclick="showSurprise()">
+            <i class="fas fa-gift" style="font-size: 3rem; color: var(--gold);"></i>
+            <h3 style="margin-top: 15px;">A Secret Surprise</h3>
+            <p id="surprise-text">Click to unwrap...</p>
+        </div>
+    </section>
+
+    <section class="gallery">
+        <h2 class="gallery-title">Your Special Moments</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="card-img" style="background-image: url('YOUR_IMAGE_1');"></div>
+                <div class="card-desc"><h3>The Red Saree Look</h3><p>Elegance redefined.</p></div>
+            </div>
+            <div class="card">
+                <div class="card-img" style="background-image: url('YOUR_IMAGE_2');"></div>
+                <div class="card-desc"><h3>Sri Lanka Trip</h3><p>I ❤️ CMB Memories.</p></div>
+            </div>
+            <div class="card">
+                <div class="card-img" style="background-image: url('YOUR_IMAGE_3');"></div>
+                <div class="card-desc"><h3>Elephant Encounter</h3><p>Unforgettable days.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section style="text-align: center; padding: 50px; background: #000;">
+        <h3>Send Me a Birthday Voice Note</h3>
+        <p style="color: #888; margin-bottom: 20px;">Record her response directly to my chat</p>
+        <a href="https://wa.me/YOUR_PHONE_NUMBER" class="btn btn-voice" style="display: inline-flex;">
+            <i class="fas fa-paper-plane"></i> Record & Send to Abdullah
+        </a>
+    </section>
+
+    <div class="social-float">
+        <a href="https://ig.me/m/YOUR_INSTA_ID" class="float-icon insta" title="DM on Instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://wa.me/YOUR_PHONE_NUMBER?text=Hey%20Abdullah!%20I%20loved%20the%20birthday%20surprise!" class="float-icon wp" title="WhatsApp Me">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <footer>
+        <div style="padding: 40px; text-align: center; border-top: 1px solid var(--glass);">
+            <p style="opacity: 0.6;">Created with ❤️ for Laiba</p>
+            <div style="font-family: 'Playfair Display'; color: var(--gold); font-size: 1.5rem; margin-top: 10px;">by AbdullahXtreme</div>
+        </div>
+    </footer>
+
+    <script>
+        // Countdown Script
+        const birthdayDate = new Date("Jan 24, 2026 00:00:00").getTime();
+        setInterval(function() {
+            const now = new Date().getTime();
+            const distance = birthdayDate - now;
+            document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
+            document.getElementById("hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("mins").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById("secs").innerText = Math.floor((distance % (1000 * 60)) / 1000);
+        }, 1000);
+
+        function playVoice() {
+            alert("This will play your recorded audio file (mp3)!");
+            // Integration: new Audio('your-voice-file.mp3').play();
+        }
+
+        function showSurprise() {
+            const text = document.getElementById("surprise-text");
+            text.innerHTML = "You are the most precious person in my world! 💖 ✨";
+            text.style.color = "var(--gold)";
+            confettiEffect();
+        }
+
+        function confettiEffect() {
+            alert("🎉 Confetti Explosion! 🎉");
+        }
+    </script>
+</body>
+</html>
